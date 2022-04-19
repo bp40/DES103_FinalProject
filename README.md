@@ -10,7 +10,7 @@ Final Project for DES103 at SIIT
 5. There are at least 3 containers.
 6. There are at least 4 distinct components.
 7. Two distinct layout managers must be used.
-8. 8. At least 2 distinct geometric shapes must be drawn by the method paintComponent.
+8. At least 2 distinct geometric shapes must be drawn by the method paintComponent.
 9. At least 2 different colors are used in drawing these geometric shapes.
 10. At least 3 sources fire events, and at least 1 listener monitors the events. Actions must be performed accordingly.
 11. At least 3 types of events learned in the class must be included.
