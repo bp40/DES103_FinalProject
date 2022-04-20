@@ -9,18 +9,22 @@ import java.util.Scanner;
 
 public class SaveManager {
 
-    //Gets the file path for save file
-    private static String getAbsoluteFilePath() {
+    /**
+     * @return Absolute file path (X://a/assets/save.txt) to save.txt in assets folder
+     */
+    private static File getSaveFile() {
         URL url = SaveManager.class.getResource("../../assets/save.txt");
-        File file = new File(url.getPath());
 
-        return file.getAbsolutePath();
+        return new File(url.getPath());
     }
 
+    /**
+     * Saves current game progress, creates new file if not exist. Then recalculate player's income
+     */
     public static void saveProgress() {
 
         try {
-            try (FileWriter writer = new FileWriter(getAbsoluteFilePath())) {
+            try (FileWriter writer = new FileWriter(getSaveFile().getAbsolutePath())) {
                 writer.write(Player.getCurrentCoins() + "\n");
                 UpgradesPanel.upgradeList.forEach(item -> {
                     try {
@@ -38,12 +42,13 @@ public class SaveManager {
 
     }
 
+    /**
+     * Loads current game progress from save file, then recalculate player's income
+     */
     public static void loadSaveFromFile() {
 
-        URL url = SaveManager.class.getResource("../../assets/save.txt");
-        File upgradeInfoFile = new File(url.getPath());
         try {
-            Scanner fileReader = new Scanner(upgradeInfoFile);
+            Scanner fileReader = new Scanner(getSaveFile());
 
             Player.setCurrentCoins(Double.parseDouble(fileReader.nextLine()));
 
@@ -59,8 +64,11 @@ public class SaveManager {
 
     }
 
+    /**
+     * rewrites save file to zero
+     */
     public static void resetSave() {
-        try (FileWriter writer = new FileWriter(getAbsoluteFilePath())) {
+        try (FileWriter writer = new FileWriter(getSaveFile())) {
             writer.write("");
         } catch (Exception e) {
             e.printStackTrace();
