@@ -29,6 +29,12 @@ public class Player {
         return item.purchaseCost <= currentCoins;
     }
 
+    /**
+     * Deducts item's price from player's coins
+     * Then, Increment player's coin rate
+     *
+     * @param item Item that will be bought by the player.
+     */
     public static void purchase(Item item) {
         if (!canPurchase(item)) {
             return;
@@ -39,7 +45,10 @@ public class Player {
         incomePerSecond += item.getCoinIncreaseRate();
     }
 
-    public static void recalculateIncome(){
+    /**
+     * Recalculate player's income based on upgrades and their amounts;
+     */
+    public static void recalculateIncome() {
 
         incomePerSecond = 0;
 
@@ -48,10 +57,16 @@ public class Player {
         });
     }
 
+    /**
+     * Increment player's coin base on perClickIncrease
+     */
     public static void click() {
         currentCoins += perClickIncrease;
     }
 
+    /**
+     * Increment player's coin base on twice of perClickIncrease
+     */
     public static void superClick() {
         currentCoins += (perClickIncrease * 2);
     }

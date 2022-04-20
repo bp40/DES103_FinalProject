@@ -87,6 +87,9 @@ public class ClickPanel extends JPanel {
 
     }
 
+    /**
+     * Listen for clicks, 0.05 percent chance to trigger superClick();
+     */
     protected static class ClickHandler implements MouseListener {
 
         @Override
