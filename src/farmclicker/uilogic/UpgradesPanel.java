@@ -39,6 +39,9 @@ public class UpgradesPanel extends JPanel {
     }
 
 
+    /**
+     * get the list of upgrades from gameInfo.txt
+     */
     private void loadUpgradeFromFile() {
 
         try {
@@ -63,7 +66,10 @@ public class UpgradesPanel extends JPanel {
 
     }
 
-    protected static void resetUpgrades(){
+    /**
+     * resets the amount of upgrades to zero
+     */
+    protected static void resetUpgrades() {
         upgradeList.forEach(upgrade -> upgrade.setCurrentAmount(0));
     }
 

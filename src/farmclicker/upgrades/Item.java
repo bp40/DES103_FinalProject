@@ -2,12 +2,10 @@ package farmclicker.upgrades;
 
 public class Item extends Upgrade {
     private final double coinIncreaseRate;
-    private final int baseCost;
     private int currentAmount;
 
     public Item(String name, int baseCost, double coinIncreaseRate) {
         super(name, baseCost);
-        this.baseCost = baseCost;
         this.coinIncreaseRate = coinIncreaseRate;
         this.currentAmount = 0;
     }
@@ -16,19 +14,20 @@ public class Item extends Upgrade {
         return coinIncreaseRate;
     }
 
-    public int getCurrentAmount(){
+    public int getCurrentAmount() {
         return currentAmount;
     }
 
-    public void setCurrentAmount(int amount){
+    public void setCurrentAmount(int amount) {
         currentAmount = amount;
     }
 
+    /**
+     * Increment the price and amount of item
+     */
     public void purchase() {
-
         currentAmount += 1;
         super.purchaseCost *= 1.15;
-
     }
 
 }
