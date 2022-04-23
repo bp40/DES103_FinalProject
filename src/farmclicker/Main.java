@@ -1,5 +1,6 @@
 package farmclicker;
 
+import farmclicker.ui.AchievementAlertPane;
 import farmclicker.ui.ClickPanel;
 import farmclicker.ui.UpgradesPanel;
 import farmclicker.utility.SaveManager;
@@ -35,6 +36,7 @@ public class Main {
         ClickPanel clickPanel = new ClickPanel();
         frame.add(clickPanel, BorderLayout.CENTER);
 
+        new AchievementAlertPane();
         SaveManager.loadSaveFromFile();
 
         //Save game progress every 10 seconds
@@ -51,6 +53,5 @@ public class Main {
         frame.validate();
 
     }
-
 
 }
