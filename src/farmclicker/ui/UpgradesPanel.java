@@ -1,4 +1,4 @@
-package farmclicker.uilogic;
+package farmclicker.ui;
 
 import farmclicker.upgrades.Item;
 
@@ -14,7 +14,7 @@ public class UpgradesPanel extends JPanel {
 
     JPanel buyPowerUpPanel;
     JPanel buyUpgradePanel;
-    protected static ArrayList<Item> upgradeList;
+    public static ArrayList<Item> upgradeList;
 
     public UpgradesPanel() {
 
@@ -69,7 +69,7 @@ public class UpgradesPanel extends JPanel {
     /**
      * resets the amount of upgrades to zero
      */
-    protected static void resetUpgrades() {
+    public static void resetUpgrades() {
         upgradeList.forEach(upgrade -> upgrade.setCurrentAmount(0));
     }
 

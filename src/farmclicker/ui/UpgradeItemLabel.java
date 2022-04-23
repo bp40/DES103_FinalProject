@@ -1,6 +1,7 @@
-package farmclicker.uilogic;
+package farmclicker.ui;
 
 import farmclicker.upgrades.Item;
+import farmclicker.utility.Player;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
