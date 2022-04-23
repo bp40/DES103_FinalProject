@@ -1,9 +1,9 @@
-Plant pot,10,0.1
-Fertilizer,100,1
-Wheelbarrow,700,5
-Farmer,1500,12
-Greenhouse,15000,40
-Plantation,120000,250
+Plant pot,10,0.2
+Fertilizer,100,2
+Wheelbarrow,700,8
+Farmer,1500,35
+Greenhouse,15000,100
+Plantation,120000,450
 Tractor,1150000,1200
 Hydroponics,17000000,5500
 GMO,300000000,20000
