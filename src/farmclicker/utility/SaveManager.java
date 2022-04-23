@@ -1,5 +1,6 @@
 package farmclicker.utility;
 
+import farmclicker.ui.AchievementAlertPane;
 import farmclicker.ui.UpgradesPanel;
 
 import java.io.File;
@@ -35,6 +36,16 @@ public class SaveManager {
                         throw new RuntimeException(e);
                     }
                 });
+                if (!AchievementAlertPane.completedMilestonesList.isEmpty()) {
+                    AchievementAlertPane.completedMilestonesList.forEach(achievement -> {
+                        try {
+                            writer.write(achievement + "\n");
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    });
+                }
+
             }
             Player.recalculateIncome();
             System.out.println("Auto saved successful");
@@ -57,6 +68,10 @@ public class SaveManager {
             UpgradesPanel.upgradeList.forEach(item -> {
                 item.setCurrentAmount(Integer.parseInt(fileReader.nextLine()));
             });
+
+            while (fileReader.hasNextLine()) {
+                AchievementAlertPane.completedMilestonesList.add(Integer.valueOf(fileReader.nextLine()));
+            }
 
             Player.recalculateIncome();
             System.out.println("Loaded from file successfully");
