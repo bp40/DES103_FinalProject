@@ -1,4 +1,7 @@
-package farmclicker.uilogic;
+package farmclicker.ui;
+
+import farmclicker.utility.Player;
+import farmclicker.utility.SaveManager;
 
 import javax.swing.*;
 import java.awt.*;

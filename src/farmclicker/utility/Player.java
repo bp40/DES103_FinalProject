@@ -1,5 +1,6 @@
-package farmclicker.uilogic;
+package farmclicker.utility;
 
+import farmclicker.ui.UpgradesPanel;
 import farmclicker.upgrades.Item;
 
 //Helper class

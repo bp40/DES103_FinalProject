@@ -1,4 +1,6 @@
-package farmclicker.uilogic;
+package farmclicker.utility;
+
+import farmclicker.ui.UpgradesPanel;
 
 import java.io.File;
 import java.io.FileNotFoundException;

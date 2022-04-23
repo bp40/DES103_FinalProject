@@ -1,8 +1,8 @@
 package farmclicker;
 
-import farmclicker.uilogic.ClickPanel;
-import farmclicker.uilogic.SaveManager;
-import farmclicker.uilogic.UpgradesPanel;
+import farmclicker.ui.ClickPanel;
+import farmclicker.ui.UpgradesPanel;
+import farmclicker.utility.SaveManager;
 
 import javax.swing.*;
 import java.awt.*;
