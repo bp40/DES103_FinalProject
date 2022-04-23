@@ -53,6 +53,9 @@ public class AchievementAlertPane extends JOptionPane {
 
     }
 
+    /**
+     * Check if player has reached an achievement amount of coin
+     */
     private void checkAchievement() {
         int currentCoin = (int) Player.getCurrentCoins();
 
