@@ -14,9 +14,11 @@ public class ClickPanel extends JPanel {
 
     Image backgroundImage;
     JPanel coinPanel;
+    JPanel AchievementPanel;
     JLabel currentCoinLabel;
     JLabel currentCoinIncrementLabel;
     JButton resetButton;
+    JButton saveButton;
 
     public ClickPanel() {
 
@@ -59,6 +61,7 @@ public class ClickPanel extends JPanel {
         currentCoinIncrementLabel.setFont(new Font("Arial", Font.BOLD, 16));
         currentCoinIncrementLabel.setForeground(Color.white);
         resetButton = new JButton("RESET");
+        saveButton = new JButton("SAVE");
         resetButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -66,11 +69,33 @@ public class ClickPanel extends JPanel {
             }
         });
 
+        saveButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SaveManager.saveProgress();
+            }
+        });
+
         coinPanel.add(currentCoinLabel);
         coinPanel.add(currentCoinIncrementLabel);
         coinPanel.add(resetButton);
+        coinPanel.add(saveButton);
 
         this.add(coinPanel, BorderLayout.NORTH);
+
+        AchievementPanel = new AchievementProgressPanel();
+
+        Timer achievementRefreshTimer = new Timer(800, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AchievementProgressPanel.updateShownAchievement();
+                AchievementPanel.repaint();
+            }
+        });
+        achievementRefreshTimer.setRepeats(true);
+        achievementRefreshTimer.start();
+
+        this.add(AchievementPanel, BorderLayout.SOUTH);
 
     }
 

@@ -67,6 +67,7 @@ public class AchievementAlertPane extends JOptionPane {
 
             if (currentCoin >= currentMilestone) {
                 completedMilestonesList.add(currentMilestone);
+                AchievementProgressPanel.addAchievement(currentMilestone);
                 showNewAchievement(MilestoneText[i], MilestoneTitle[i]);
                 break;
             }
@@ -80,6 +81,10 @@ public class AchievementAlertPane extends JOptionPane {
                 achievementText,
                 JOptionPane.INFORMATION_MESSAGE
         );
+    }
+
+    public static void resetAchievement() {
+        completedMilestonesList.clear();
     }
 
 }
