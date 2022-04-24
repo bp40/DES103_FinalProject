@@ -70,33 +70,36 @@ public class SaveManager {
         try {
             Scanner fileReader = new Scanner(getSaveFile());
 
-            byte[] decodedByte = Base64.getDecoder().decode(fileReader.nextLine());
-            String decodedString = new String(decodedByte);
-            String[] saveDataArray = decodedString.split("\n");
+            if (fileReader.hasNextLine()) {
+                byte[] decodedByte = Base64.getDecoder().decode(fileReader.nextLine());
+                String decodedString = new String(decodedByte);
+                String[] saveDataArray = decodedString.split("\n");
 
-            int currentIndex = 0;
+                int currentIndex = 0;
 
-            //Debug Arrays.stream(saveDataArray).forEach(item-> System.out.println("!" + item + "!"));
+                //Debug Arrays.stream(saveDataArray).forEach(item-> System.out.println("!" + item + "!"));
 
-            Player.setCurrentCoins(Double.parseDouble(saveDataArray[currentIndex++]));//Sets player coin to saved amount
+                Player.setCurrentCoins(Double.parseDouble(saveDataArray[currentIndex++]));//Sets player coin to saved amount
 
-            //loops through save until hit ACHIEVEMENT section, updates amount of upgrade in upgradeList
-            for (int i = currentIndex; i < saveDataArray.length; i++) {
-                if (saveDataArray[i].equals("ACHIEVEMENT")) {
-                    currentIndex = i + 1;
-                    break;
-                } else {
-                    UpgradesPanel.upgradeList.get(i - 1).setCurrentAmount(Integer.parseInt(saveDataArray[i]));
+                //loops through save until hit ACHIEVEMENT section, updates amount of upgrade in upgradeList
+                for (int i = currentIndex; i < saveDataArray.length; i++) {
+                    if (saveDataArray[i].equals("ACHIEVEMENT")) {
+                        currentIndex = i + 1;
+                        break;
+                    } else {
+                        UpgradesPanel.upgradeList.get(i - 1).setCurrentAmount(Integer.parseInt(saveDataArray[i]));
+                    }
                 }
+
+                //loops through the rest of the save and write list of already gotten achievement
+                for (int i = currentIndex; i < saveDataArray.length; i++) {
+                    AchievementAlertPane.completedMilestonesList.add(Integer.valueOf(saveDataArray[i]));
+                }
+
+                Player.recalculateIncome();
+                System.out.println("Loaded from file successfully");
             }
 
-            //loops through the rest of the save and write list of already gotten achievement
-            for (int i = currentIndex; i < saveDataArray.length; i++) {
-                AchievementAlertPane.completedMilestonesList.add(Integer.valueOf(saveDataArray[i]));
-            }
-
-            Player.recalculateIncome();
-            System.out.println("Loaded from file successfully");
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -115,6 +118,7 @@ public class SaveManager {
             UpgradesPanel.resetUpgrades();
             Player.setCurrentCoins(0);
             Player.recalculateIncome();
+            AchievementAlertPane.resetAchievement();
         }
 
     }
