@@ -19,6 +19,9 @@ public class PowerUp extends Upgrade {
         this.isOnCooldown = false;
     }
 
+    /**
+     * @return Item from upgradeList that has the same name
+     */
     private Item getUpgradeItemInList() {
         for (Item item : UpgradesPanel.upgradeList) {
             if (targetUpgrade.equals(item.name)) {
@@ -28,6 +31,10 @@ public class PowerUp extends Upgrade {
         return null;
     }
 
+    /**
+     * set power up on cooldown for 60 seconds
+     * Temporarily increase coin increase rate by 25%
+     */
     @Override
     public void purchase() {
         this.isOnCooldown = true;

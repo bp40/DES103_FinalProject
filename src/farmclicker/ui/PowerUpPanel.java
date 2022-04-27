@@ -33,6 +33,9 @@ public class PowerUpPanel extends JPanel {
 
     }
 
+    /**
+     * load name, price, targetUpgrade from PowerUpsInfo.txt
+     */
     private void loadPowerUpsFromFile() {
         try {
             Scanner fileReader = new Scanner(SaveManager.getFile("../../assets/PowerUpsInfo.txt"));
