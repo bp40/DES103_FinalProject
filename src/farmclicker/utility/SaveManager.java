@@ -15,10 +15,10 @@ import java.util.Scanner;
 public class SaveManager {
 
     /**
-     * @return Absolute file path (X://a/assets/save.txt) to save.txt in assets folder
+     * @return File object from relative path from SaveManager file
      */
-    private static File getSaveFile() {
-        URL url = SaveManager.class.getResource("../../assets/save.txt");
+    public static File getFile(String relativeFilePath) {
+        URL url = SaveManager.class.getResource(relativeFilePath);
 
         return new File(url.getPath());
     }
@@ -30,7 +30,7 @@ public class SaveManager {
     public static void saveProgress() {
 
         try {
-            try (FileWriter writer = new FileWriter(getSaveFile().getAbsolutePath())) {
+            try (FileWriter writer = new FileWriter(getFile("../../assets/save.txt").getAbsolutePath())) {
                 StringBuilder sb = new StringBuilder();
                 sb.append(Player.getCurrentCoins()).append("\n");
 
@@ -55,8 +55,8 @@ public class SaveManager {
 
             Player.recalculateIncome();
             System.out.println("Auto saved successful");
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException IOe) {
+            IOe.printStackTrace();
         }
 
     }
@@ -68,7 +68,7 @@ public class SaveManager {
     public static void loadSaveFromFile() {
 
         try {
-            Scanner fileReader = new Scanner(getSaveFile());
+            Scanner fileReader = new Scanner(getFile("../../assets/save.txt"));
 
             if (fileReader.hasNextLine()) {
                 byte[] decodedByte = Base64.getDecoder().decode(fileReader.nextLine());
@@ -101,7 +101,9 @@ public class SaveManager {
             }
 
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            System.out.println("Save not file found");
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }
@@ -110,7 +112,7 @@ public class SaveManager {
      * rewrites save file to zero (reset save)
      */
     public static void resetSave() {
-        try (FileWriter writer = new FileWriter(getSaveFile())) {
+        try (FileWriter writer = new FileWriter(getFile("../../assets/save.txt"))) {
             writer.write("");
         } catch (Exception e) {
             e.printStackTrace();

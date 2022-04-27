@@ -1,0 +1,10 @@
+Click Boost,1000,Click
+Pot booster,50,Plant pot
+Natural fertilizer,500,Fertilizer
+Steel wheelbarrow,3500,Wheelbarrow
+Experienced Farmer,7500,Farmer
+New Greenhouse,75000,Greenhouse
+Farm Expansion,600000,Plantation
+Efficient Tractor,5750000,Tractor
+Hydroponics bay,85000000,Hydroponics
+Alien Technology,1500000000,GMO

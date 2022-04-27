@@ -24,7 +24,7 @@ public class Main {
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setLocationRelativeTo(null);
-        frame.setSize(new Dimension(720, 480));
+        frame.setSize(new Dimension(890, 490));
         frame.setResizable(false);
         frame.setLayout(new BorderLayout());
         frame.setTitle("Farming clicker game");

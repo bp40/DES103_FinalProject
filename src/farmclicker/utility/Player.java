@@ -1,7 +1,7 @@
 package farmclicker.utility;
 
 import farmclicker.ui.UpgradesPanel;
-import farmclicker.upgrades.Item;
+import farmclicker.upgrades.Upgrade;
 
 //Helper class
 public class Player {
@@ -19,6 +19,7 @@ public class Player {
     }
 
     public static double getIncomePerSecond() {
+        recalculateIncome();
         return incomePerSecond;
     }
 
@@ -26,24 +27,32 @@ public class Player {
         currentCoins += incomePerSecond;
     }
 
-    public static boolean canPurchase(Item item) {
-        return item.purchaseCost <= currentCoins;
+    public static void setIncomePerSecond(double income) {
+
+        if (income > 0) {
+            incomePerSecond = income;
+        }
+
+        Player.recalculateIncome();
+
+    }
+
+    public static boolean canPurchase(Upgrade upgrade) {
+        return upgrade.purchaseCost <= currentCoins;
     }
 
     /**
      * Deducts item's price from player's coins
      * Then, Increment player's coin rate
      *
-     * @param item Item that will be bought by the player.
+     * @param upgrade Item that will be bought by the player.
      */
-    public static void purchase(Item item) {
-        if (!canPurchase(item)) {
+    public static void purchase(Upgrade upgrade) {
+        if (!canPurchase(upgrade)) {
             return;
         }
 
-        currentCoins -= item.purchaseCost;
-        item.purchase();
-        incomePerSecond += item.getCoinIncreaseRate();
+        currentCoins -= upgrade.purchaseCost;
     }
 
     /**

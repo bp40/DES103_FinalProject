@@ -65,7 +65,11 @@ public class ClickPanel extends JPanel {
         resetButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SaveManager.resetSave();
+                int choice = JOptionPane.showConfirmDialog(null, "Game reset!");
+                if (choice == JOptionPane.YES_OPTION) {
+                    SaveManager.resetSave();
+                }
+
             }
         });
 
@@ -73,6 +77,7 @@ public class ClickPanel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 SaveManager.saveProgress();
+                JOptionPane.showMessageDialog(null, "Game saved!");
             }
         });
 

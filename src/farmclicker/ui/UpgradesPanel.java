@@ -1,12 +1,11 @@
 package farmclicker.ui;
 
 import farmclicker.upgrades.Item;
+import farmclicker.utility.SaveManager;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -29,9 +28,7 @@ public class UpgradesPanel extends JPanel {
         }
         buyUpgradePanel.setBackground(Color.BLACK);
 
-        buyPowerUpPanel = new JPanel();
-        buyPowerUpPanel.setBackground(Color.RED);
-        buyPowerUpPanel.setLayout(new GridLayout(4, 2, 0, 3));
+        buyPowerUpPanel = new PowerUpPanel();
 
         this.add(buyPowerUpPanel, BorderLayout.NORTH);
         this.add(buyUpgradePanel, BorderLayout.CENTER);
@@ -40,14 +37,12 @@ public class UpgradesPanel extends JPanel {
 
 
     /**
-     * get the list of upgrades from gameInfo.txt
+     * get the list of upgrades from upgradesInfo.txt
      */
     private void loadUpgradeFromFile() {
 
         try {
-            URL url = getClass().getResource("../../assets/gameInfo.txt");
-            File upgradeInfoFile = new File(url.getPath());
-            Scanner fileReader = new Scanner(upgradeInfoFile);
+            Scanner fileReader = new Scanner(SaveManager.getFile("../../assets/upgradesInfo.txt"));
             while (fileReader.hasNextLine()) {
                 String line = fileReader.nextLine();
                 String[] parts = line.split(",");

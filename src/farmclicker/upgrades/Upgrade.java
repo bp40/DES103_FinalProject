@@ -11,5 +11,6 @@ public abstract class Upgrade {
 
     }
 
+    public abstract void purchase();
 
 }

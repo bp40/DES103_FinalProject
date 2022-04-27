@@ -18,7 +18,7 @@ public class UpgradeItemLabel extends JLabel {
     public UpgradeItemLabel(Item upgradeItem) {
 
         this.item = upgradeItem;
-        this.setLayout(new BorderLayout());
+        this.setLayout(new BorderLayout(5, 20));
 
         this.addMouseListener(new BuyHandler());
         this.setFont(new Font("Arial", Font.BOLD, 14));
@@ -26,10 +26,10 @@ public class UpgradeItemLabel extends JLabel {
         this.setForeground(Color.WHITE);
         this.setOpaque(true);
         this.setText(item.name);
-        this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
+        this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 
         costLabel = new JLabel("Cost : " + item.purchaseCost);
-        costLabel.setBorder(new EmptyBorder(25, 0, 0, 0));
+        costLabel.setBorder(new EmptyBorder(30, 0, 0, 0));
         costLabel.setForeground(Color.yellow);
         this.add(costLabel, BorderLayout.SOUTH);
 
@@ -40,6 +40,7 @@ public class UpgradeItemLabel extends JLabel {
         super.paintComponent(g);
         costLabel.setText("Cost : " + item.purchaseCost);
         this.setBackground(hoverBackgroundColor);
+        this.setToolTipText("Current gain : " + (item.getCoinIncreaseRate() * item.getCurrentAmount()));
     }
 
     private class BuyHandler implements MouseListener {
@@ -47,7 +48,7 @@ public class UpgradeItemLabel extends JLabel {
         @Override
         public void mouseClicked(MouseEvent e) {
             if (Player.canPurchase(item)) {
-                Player.purchase(item);
+                item.purchase();
             }
             repaint();
         }
