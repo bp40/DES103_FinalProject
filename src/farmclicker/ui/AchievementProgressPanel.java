@@ -34,6 +34,12 @@ public class AchievementProgressPanel extends JPanel {
 
     }
 
+    public static void refreshAchievementPanel() {
+        shownAchievements.clear();
+        loadAchievement();
+        updateShownAchievement();
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

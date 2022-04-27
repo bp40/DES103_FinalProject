@@ -76,6 +76,7 @@ public class ClickPanel extends JPanel {
                 int choice = JOptionPane.showConfirmDialog(null, "Game reset!");
                 if (choice == JOptionPane.YES_OPTION) {
                     SaveManager.resetSave();
+                    AchievementProgressPanel.refreshAchievementPanel();
                 }
 
             }
