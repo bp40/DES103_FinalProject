@@ -73,6 +73,11 @@ public class UpgradeItemLabel extends JLabel {
             if (Player.canPurchase(item)) {
                 item.purchase();
             }
+            if (Player.canPurchase(item)) {
+                hoverBackgroundColor = new Color(0, 143, 17);
+            } else {
+                hoverBackgroundColor = Color.RED;
+            }
             repaint();
         }
 

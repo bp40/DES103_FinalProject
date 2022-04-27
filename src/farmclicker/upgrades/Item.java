@@ -70,9 +70,9 @@ public class Item extends Upgrade {
             return;
         }
 
+        Player.purchase(this);
         this.currentAmount += 1;
         super.purchaseCost *= 1.15;
-        Player.purchase(this);
         Player.setIncomePerSecond(Player.getIncomePerSecond() + this.coinIncreaseRate);
     }
 
