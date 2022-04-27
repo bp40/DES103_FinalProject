@@ -9,12 +9,23 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * {@link JPanel} that shows available upgrades and power ups
+ */
 public class UpgradesPanel extends JPanel {
 
     JPanel buyPowerUpPanel;
     JPanel buyUpgradePanel;
+    /**
+     * List of all purchasable upgrades
+     */
     public static ArrayList<Item> upgradeList;
 
+    /**
+     * generate upgrades {@link JPanel}
+     * loads upgrades/prices from file
+     * add upgrades to {@link UpgradesPanel#upgradeList}
+     */
     public UpgradesPanel() {
 
         this.setLayout(new BorderLayout());

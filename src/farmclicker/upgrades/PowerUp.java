@@ -7,12 +7,23 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * logic for temporary power ups
+ */
 public class PowerUp extends Upgrade {
 
     private final String targetUpgrade;
     private final int cooldownTimeInSeconds = 60;
+    /**
+     * whether power up is on cooldown after purchase
+     */
     public boolean isOnCooldown;
 
+    /**
+     * @param name          Power up name
+     * @param purchaseCost  Power up cost
+     * @param targetUpgrade the {@link UpgradesPanel#upgradeList} that this power up will boost income
+     */
     public PowerUp(String name, int purchaseCost, String targetUpgrade) {
         super(name, purchaseCost);
         this.targetUpgrade = targetUpgrade;

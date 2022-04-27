@@ -10,8 +10,16 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Main class
+ */
 public class Main {
 
+    /**
+     * starts the game
+     *
+     * @param args program arguments
+     */
     public static void main(String[] args) {
 
         //Sets look and feel to windows

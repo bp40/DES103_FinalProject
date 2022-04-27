@@ -8,17 +8,36 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Controls achievement alerts and player's completed achievement
+ */
 public class AchievementAlertPane extends JOptionPane {
 
-    private final List<Integer> cookieMilestoneList;
-    private final String[] MilestoneTitle;
-    private final String[] MilestoneText;
+    /**
+     * list of player's completed milestones
+     */
     public static List<Integer> completedMilestonesList;
+    /**
+     * list of all achievements/milestone's amount of coin required
+     */
+    private final List<Integer> coinMilestoneList;
+    /**
+     * list of title of all the achievements
+     */
+    private final String[] MilestoneTitle;
+    /**
+     * list of all sub text of achievements
+     */
+    private final String[] MilestoneText;
 
+    /**
+     * generate an AchievementAlertPane
+     * adds all the milestones,assign names and text, start a achievement refresh timer
+     */
     public AchievementAlertPane() {
-        cookieMilestoneList = new ArrayList<>();
+        coinMilestoneList = new ArrayList<>();
         for (int i = 1; i < 9; i++) {
-            cookieMilestoneList.add((int) Math.pow(10, i));
+            coinMilestoneList.add((int) Math.pow(10, i));
         }
         MilestoneTitle = new String[]{
                 "First 10!",
@@ -54,24 +73,10 @@ public class AchievementAlertPane extends JOptionPane {
     }
 
     /**
-     * Check if player has reached an achievement amount of coin
+     * clear player's achievement
      */
-    private void checkAchievement() {
-        int currentCoin = (int) Player.getCurrentCoins();
-
-        for (int i = 0; i < cookieMilestoneList.size(); i++) {
-            int currentMilestone = cookieMilestoneList.get(i);
-            if (completedMilestonesList.contains(currentMilestone)) {
-                continue;
-            }
-
-            if (currentCoin >= currentMilestone) {
-                completedMilestonesList.add(currentMilestone);
-                AchievementProgressPanel.addAchievement(currentMilestone);
-                showNewAchievement(MilestoneText[i], MilestoneTitle[i]);
-                break;
-            }
-        }
+    public static void resetAchievement() {
+        completedMilestonesList.clear();
     }
 
     private void showNewAchievement(String achievementText, String achievementTitle) {
@@ -83,8 +88,25 @@ public class AchievementAlertPane extends JOptionPane {
         );
     }
 
-    public static void resetAchievement() {
-        completedMilestonesList.clear();
+    /**
+     * Check if player has reached an achievement amount of coin
+     */
+    private void checkAchievement() {
+        int currentCoin = (int) Player.getCurrentCoins();
+
+        for (int i = 0; i < coinMilestoneList.size(); i++) {
+            int currentMilestone = coinMilestoneList.get(i);
+            if (completedMilestonesList.contains(currentMilestone)) {
+                continue;
+            }
+
+            if (currentCoin >= currentMilestone) {
+                completedMilestonesList.add(currentMilestone);
+                AchievementProgressPanel.addAchievement(currentMilestone);
+                showNewAchievement(MilestoneText[i], MilestoneTitle[i]);
+                break;
+            }
+        }
     }
 
 }

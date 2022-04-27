@@ -3,30 +3,44 @@ package farmclicker.utility;
 import farmclicker.ui.UpgradesPanel;
 import farmclicker.upgrades.Upgrade;
 
-//Helper class
+/**
+ * Helper class for keeping track of coins and income
+ */
 public class Player {
 
     private static final double perClickIncrease = 1;
     private static double currentCoins = 0;
     private static double incomePerSecond = 0;
 
-    public static void setCurrentCoins(double currentCoins) {
-        Player.currentCoins = currentCoins;
-    }
-
+    /**
+     * @return current amount of coin
+     */
     public static double getCurrentCoins() {
         return currentCoins;
     }
 
+    /**
+     * @param currentCoins {@link Player}'s new current coin
+     */
+    public static void setCurrentCoins(double currentCoins) {
+        Player.currentCoins = currentCoins;
+    }
+
+    /**
+     * recalculate the income then return income
+     *
+     * @return {@link Player}'s coin gain per second
+     */
     public static double getIncomePerSecond() {
         recalculateIncome();
         return incomePerSecond;
     }
 
-    public static void autoIncrementCoin() {
-        currentCoins += incomePerSecond;
-    }
-
+    /**
+     * set player's income then recalculate the income
+     *
+     * @param income new player's income per second
+     */
     public static void setIncomePerSecond(double income) {
 
         if (income > 0) {
@@ -37,6 +51,18 @@ public class Player {
 
     }
 
+    /**
+     * Increase the player's coin by income per second
+     * supposed to be run once a second
+     */
+    public static void autoIncrementCoin() {
+        currentCoins += incomePerSecond;
+    }
+
+    /**
+     * @param upgrade upgrade object that will be compared
+     * @return boolean of whether player has enough coins
+     */
     public static boolean canPurchase(Upgrade upgrade) {
         return upgrade.purchaseCost <= currentCoins;
     }

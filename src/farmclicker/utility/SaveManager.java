@@ -12,10 +12,14 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.Scanner;
 
+/**
+ * Helper class that handles saving,loading and resetting game progress
+ */
 public class SaveManager {
 
     /**
-     * @return File object from relative path from SaveManager file
+     * @param relativeFilePath file path relative to the {@link SaveManager} file
+     * @return File object retrieved from relative path
      */
     public static File getFile(String relativeFilePath) {
         URL url = SaveManager.class.getResource(relativeFilePath);

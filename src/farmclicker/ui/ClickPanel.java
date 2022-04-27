@@ -10,6 +10,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+/**
+ * Base panel of game
+ * Act as click area, control coin incrementation, and refreshing achievements
+ */
 public class ClickPanel extends JPanel {
 
     Image backgroundImage;
@@ -20,6 +24,10 @@ public class ClickPanel extends JPanel {
     JButton resetButton;
     JButton saveButton;
 
+    /**
+     * creates a ClickPanel
+     * acts as click area and set timers for screen repaints
+     */
     public ClickPanel() {
 
         this.setLayout(new BorderLayout());

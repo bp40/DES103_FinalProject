@@ -12,10 +12,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * {@link JPanel} that handles loading power ups from file and showing them on screen
+ */
 public class PowerUpPanel extends JPanel {
 
     List<PowerUp> powerUpList;
 
+    /**
+     * Generate {@link JPanel} with GridLayout
+     * sets timer to update every 2 seconds
+     */
     public PowerUpPanel() {
 
         powerUpList = new ArrayList<>();

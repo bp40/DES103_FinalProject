@@ -8,11 +8,23 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+/**
+ * {@link JLabel} for showing and buying power ups
+ */
 public class PowerUpItemLabel extends JLabel {
 
+    /**
+     * Power up of this label
+     */
     PowerUp powerUp;
+    /**
+     * Color of the name of label text
+     */
     Color currentColor = Color.RED;
 
+    /**
+     * @param powerUp powerUp that will be assigned to this label
+     */
     public PowerUpItemLabel(PowerUp powerUp) {
         this.powerUp = powerUp;
 

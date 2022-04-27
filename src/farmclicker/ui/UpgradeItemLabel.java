@@ -9,12 +9,30 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+/**
+ * {@link JLabel} that represents each upgrade available
+ * handles purchasing of the upgrade
+ */
 public class UpgradeItemLabel extends JLabel {
 
+    /**
+     * Item of this label
+     */
     private final Item item;
+    /**
+     * {@link JLabel} that shows current cost
+     */
     private final JLabel costLabel;
+    /**
+     * Background of upgrade that change depending on {@link Player}'s coin amount
+     */
     private Color hoverBackgroundColor = Color.GRAY;
 
+    /**
+     * creates and show Upgrade label
+     *
+     * @param upgradeItem Item that will be assigned to this {@link JLabel}
+     */
     public UpgradeItemLabel(Item upgradeItem) {
 
         this.item = upgradeItem;
@@ -43,6 +61,11 @@ public class UpgradeItemLabel extends JLabel {
         this.setToolTipText("Current gain : " + (item.getCoinIncreaseRate() * item.getCurrentAmount()));
     }
 
+    /**
+     * Mouse click handler that handles click to buy from player
+     *
+     * @see MouseListener
+     */
     private class BuyHandler implements MouseListener {
 
         @Override
