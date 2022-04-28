@@ -79,7 +79,7 @@ public class AchievementProgressPanel extends JPanel {
      */
     public static void addAchievement(int achievement) {
         shownAchievements.add(achievement);
-        System.out.println("added " + achievement);
+        System.out.println("Milestone reached : " + achievement);
     }
 
 }

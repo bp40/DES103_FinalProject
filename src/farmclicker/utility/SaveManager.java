@@ -80,8 +80,9 @@ public class SaveManager {
     public static void loadSaveFromFile() {
 
         try {
-            Scanner fileReader = new Scanner(getFile("../../assets/save.txt"));
-
+            File file = getFile("../../assets/save.txt");
+            Scanner fileReader = new Scanner(file);
+            System.out.println("Loaded save from : " + file);
             if (fileReader.hasNextLine()) {
                 byte[] decodedByte = Base64.getDecoder().decode(fileReader.nextLine());
                 String decodedString = new String(decodedByte);
