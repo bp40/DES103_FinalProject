@@ -18,7 +18,7 @@ public class ClickPanel extends JPanel {
 
     Image backgroundImage;
     JPanel coinPanel;
-    JPanel AchievementPanel;
+    JPanel achievementPanel;
     JLabel currentCoinLabel;
     JLabel currentCoinIncrementLabel;
     JButton resetButton;
@@ -97,19 +97,19 @@ public class ClickPanel extends JPanel {
 
         this.add(coinPanel, BorderLayout.NORTH);
 
-        AchievementPanel = new AchievementProgressPanel();
+        achievementPanel = new AchievementProgressPanel();
 
         Timer achievementRefreshTimer = new Timer(800, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 AchievementProgressPanel.updateShownAchievement();
-                AchievementPanel.repaint();
+                achievementPanel.repaint();
             }
         });
         achievementRefreshTimer.setRepeats(true);
         achievementRefreshTimer.start();
 
-        this.add(AchievementPanel, BorderLayout.SOUTH);
+        this.add(achievementPanel, BorderLayout.SOUTH);
 
     }
 
@@ -132,7 +132,7 @@ public class ClickPanel extends JPanel {
     /**
      * Listen for clicks, 0.05 percent chance to trigger superClick();
      */
-    protected static class ClickHandler implements MouseListener {
+    private static class ClickHandler implements MouseListener {
 
         @Override
         public void mouseClicked(MouseEvent e) {

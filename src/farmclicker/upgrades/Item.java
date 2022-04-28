@@ -6,7 +6,7 @@ import farmclicker.utility.Player;
  * control logic of buying upgrades and increasing coin income
  */
 public class Item extends Upgrade {
-    private final double baseCoinIncreaseRate;
+    private final double BASE_COIN_INCREASE;
     private double coinIncreaseRate;
     private int currentAmount;
 
@@ -18,7 +18,7 @@ public class Item extends Upgrade {
     public Item(String name, int baseCost, double coinIncreaseRate) {
         super(name, baseCost);
         this.coinIncreaseRate = coinIncreaseRate;
-        this.baseCoinIncreaseRate = coinIncreaseRate;
+        this.BASE_COIN_INCREASE = coinIncreaseRate;
         this.currentAmount = 0;
     }
 
@@ -42,8 +42,8 @@ public class Item extends Upgrade {
     /**
      * @return get default value of coin income of item
      */
-    public double getBaseCoinIncreaseRate() {
-        return baseCoinIncreaseRate;
+    public double getBASE_COIN_INCREASE() {
+        return BASE_COIN_INCREASE;
     }
 
     /**
@@ -57,6 +57,9 @@ public class Item extends Upgrade {
      * @param amount the number of item that the player will have
      */
     public void setCurrentAmount(int amount) {
+        if (amount < 0) {
+            return;
+        }
         currentAmount = amount;
     }
 

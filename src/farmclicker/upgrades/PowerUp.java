@@ -31,7 +31,7 @@ public class PowerUp extends Upgrade {
     }
 
     /**
-     * @return Item from upgradeList that has the same name
+     * @return {@link Item} from upgradeList that has the same name
      */
     private Item getUpgradeItemInList() {
         for (Item item : UpgradesPanel.upgradeList) {
@@ -54,7 +54,7 @@ public class PowerUp extends Upgrade {
         System.out.println("Purchased " + name + " for " + purchaseCost);
         Item item = this.getUpgradeItemInList();
         if (item != null) {
-            item.setCoinIncreaseRate(item.getBaseCoinIncreaseRate() * 1.25);
+            item.setCoinIncreaseRate(item.getBASE_COIN_INCREASE() * 1.25);
             Player.recalculateIncome();
         }
         Timer cooldownTimer = new Timer(cooldownTimeInSeconds * 1000, new ActionListener() {
@@ -64,7 +64,7 @@ public class PowerUp extends Upgrade {
                 System.out.println(name + " cooldown lifted");
 
                 Item item = getUpgradeItemInList();
-                item.setCoinIncreaseRate(item.getBaseCoinIncreaseRate());
+                item.setCoinIncreaseRate(item.getBASE_COIN_INCREASE());
                 Player.recalculateIncome();
             }
         });

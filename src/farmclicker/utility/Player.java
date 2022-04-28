@@ -6,7 +6,10 @@ import farmclicker.upgrades.Upgrade;
 /**
  * Helper class for keeping track of coins and income
  */
-public class Player {
+public final class Player {
+
+    private Player() {
+    }
 
     private static final double perClickIncrease = 1;
     private static double currentCoins = 0;
