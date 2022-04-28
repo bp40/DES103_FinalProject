@@ -76,7 +76,10 @@ public class UpgradesPanel extends JPanel {
      * resets the amount of upgrades to zero
      */
     public static void resetUpgrades() {
-        upgradeList.forEach(upgrade -> upgrade.setCurrentAmount(0));
+        upgradeList.forEach(upgrade -> {
+            upgrade.setCurrentAmount(0);
+            upgrade.currentCost = upgrade.baseCost;
+        });
     }
 
 }

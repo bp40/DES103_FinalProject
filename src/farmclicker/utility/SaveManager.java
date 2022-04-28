@@ -2,6 +2,7 @@ package farmclicker.utility;
 
 import farmclicker.ui.AchievementAlertPane;
 import farmclicker.ui.UpgradesPanel;
+import farmclicker.upgrades.Item;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -100,7 +101,14 @@ public class SaveManager {
                         currentIndex = i + 1;
                         break;
                     } else {
-                        UpgradesPanel.upgradeList.get(i - 1).setCurrentAmount(Integer.parseInt(saveDataArray[i]));
+                        Item upgrade = UpgradesPanel.upgradeList.get(i - 1);
+                        int amount = Integer.parseInt(saveDataArray[i]);
+                        upgrade.setCurrentAmount(amount);
+                        int finalPrice = upgrade.baseCost;
+                        for (int j = 0; j < amount; j++) {
+                            finalPrice *= 1.15;
+                        }
+                        upgrade.currentCost = finalPrice;
                     }
                 }
 

@@ -15,7 +15,8 @@ public abstract class Upgrade {
     /**
      * current cost of Upgrade
      */
-    public int purchaseCost;
+    public int baseCost;
+    public int currentCost;
 
     /**
      * @param name     Name of Upgrade
@@ -23,8 +24,8 @@ public abstract class Upgrade {
      */
     public Upgrade(String name, int baseCost) {
         this.name = name;
-        this.purchaseCost = baseCost;
-
+        this.baseCost = baseCost;
+        this.currentCost = baseCost;
     }
 
     /**
