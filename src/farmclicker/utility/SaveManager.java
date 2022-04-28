@@ -22,9 +22,17 @@ public class SaveManager {
      * @return File object retrieved from relative path
      */
     public static File getFile(String relativeFilePath) {
-        URL url = SaveManager.class.getResource(relativeFilePath);
+        URL fileURL = SaveManager.class.getResource(relativeFilePath);
 
-        return new File(url.getPath());
+        try {
+            return new File(fileURL.getPath());
+        } catch (Exception e) {
+            URL url = SaveManager.class.getResource("../../assets");
+            System.out.println("Cannot find save file, creating new one at: " + url);
+            String[] pathParts = relativeFilePath.split("/");
+            return new File(url.getPath(), pathParts[pathParts.length - 1]);
+        }
+
     }
 
     /**
