@@ -24,6 +24,11 @@ public class ClickPanel extends JPanel {
     JButton resetButton;
     JButton saveButton;
 
+    private static int clickCircleSize;
+    private static int circleOffset;
+    private final int[] treeXCoordinate;
+    private final int[] treeYCoordinate;
+
     /**
      * creates a ClickPanel
      * acts as click area and set timers for screen repaints
@@ -32,6 +37,11 @@ public class ClickPanel extends JPanel {
 
         this.setLayout(new BorderLayout());
         this.addMouseListener(new ClickHandler());
+        clickCircleSize = 170;
+        circleOffset = 0;
+
+        treeXCoordinate = new int[]{294, 324, 320, 340, 350, 351, 352, 357, 344, 315, 289, 268, 254, 262, 276, 303};
+        treeYCoordinate = new int[]{278, 278, 205, 211, 209, 208, 195, 183, 163, 142, 147, 159, 183, 205, 212, 209};
 
         //Call method to  increment coin every second based on upgrades the player has
         Timer incrementTimer = new Timer(1000, new ActionListener() {
@@ -119,10 +129,18 @@ public class ClickPanel extends JPanel {
         g.drawImage(backgroundImage, 0, 0, null);
 
         g.setColor(Color.BLACK);
-        g.fillOval(220, 130, 180, 180);
+        g.fillOval(220 + circleOffset, 130 + circleOffset, clickCircleSize + 10, clickCircleSize + 10);
 
         g.setColor(new Color(52, 163, 24));
-        g.fillOval(225, 135, 170, 170);
+        g.fillOval(225 + circleOffset, 135 + circleOffset, clickCircleSize, clickCircleSize);
+
+        g.setColor(Color.white);
+        g.drawPolygon(treeXCoordinate, treeYCoordinate, treeXCoordinate.length);
+
+        g.drawLine(320, 205, 324, 185);
+        g.drawLine(312, 205, 318, 185);
+        g.drawLine(300, 208, 297, 185);
+        g.drawLine(307, 207, 304, 185);
 
         currentCoinLabel.setText(String.format("%.1f", Player.getCurrentCoins()));
         currentCoinIncrementLabel.setText("+" + String.format("%.1f", Player.getIncomePerSecond()) + "/s");
@@ -132,37 +150,47 @@ public class ClickPanel extends JPanel {
     /**
      * Listen for clicks, 0.05 percent chance to trigger superClick();
      */
-    private static class ClickHandler implements MouseListener {
+    private class ClickHandler implements MouseListener {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mousePressed(MouseEvent e) {
-
-        }
-
-        @Override
-        public void mouseReleased(MouseEvent e) {
             double criticalChance = Math.random();
-            if(criticalChance < 0.05){
+            if (criticalChance < 0.05) {
                 Player.superClick();
                 System.out.println("Super clicked!");
                 return;
+            }
+            clickCircleSize = 160;
+            circleOffset = 5;
+            repaint();
+            Timer clickAnimation = new Timer(55, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    circleOffset = 0;
+                    clickCircleSize = 170;
+                }
+            });
+            if (!clickAnimation.isRunning()) {
+                clickAnimation.start();
+                repaint();
             }
             Player.click();
         }
 
         @Override
-        public void mouseEntered(MouseEvent e) {
+        public void mousePressed(MouseEvent e) {
+        }
 
+        @Override
+        public void mouseReleased(MouseEvent e) {
+        }
+
+        @Override
+        public void mouseEntered(MouseEvent e) {
         }
 
         @Override
         public void mouseExited(MouseEvent e) {
-
         }
     }
 
