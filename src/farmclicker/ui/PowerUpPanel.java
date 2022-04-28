@@ -36,6 +36,7 @@ public class PowerUpPanel extends JPanel {
             }
         });
         updateTimer.setRepeats(true);
+        updateTimer.setCoalesce(false);
         updateTimer.start();
 
     }

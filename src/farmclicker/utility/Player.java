@@ -67,7 +67,7 @@ public final class Player {
      * @return boolean of whether player has enough coins
      */
     public static boolean canPurchase(Upgrade upgrade) {
-        return upgrade.purchaseCost <= currentCoins;
+        return upgrade.currentCost <= currentCoins;
     }
 
     /**
@@ -81,7 +81,7 @@ public final class Player {
             return;
         }
 
-        currentCoins -= upgrade.purchaseCost;
+        currentCoins -= upgrade.currentCost;
     }
 
     /**

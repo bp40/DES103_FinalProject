@@ -54,13 +54,14 @@ public class ClickPanel extends JPanel {
         incrementTimer.start();
 
         //Updates the screen every 50ms to refresh the coin amount on top of the screen
-        Timer updateTimer = new Timer(50, new ActionListener() {
+        Timer updateTimer = new Timer(120, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 repaint();
             }
         });
         updateTimer.setRepeats(true);
+        updateTimer.setCoalesce(false);
         updateTimer.start();
 
         try {
@@ -170,10 +171,13 @@ public class ClickPanel extends JPanel {
                     clickCircleSize = 170;
                 }
             });
-            if (!clickAnimation.isRunning()) {
+            clickAnimation.setCoalesce(false);
+            if (clickAnimation.isRunning()) {
+                clickAnimation.restart();
+            } else {
                 clickAnimation.start();
-                repaint();
             }
+
             Player.click();
         }
 

@@ -51,7 +51,7 @@ public class PowerUp extends Upgrade {
         this.isOnCooldown = true;
         System.out.println(name + " on cooldown");
         Player.purchase(this);
-        System.out.println("Purchased " + name + " for " + purchaseCost);
+        System.out.println("Purchased " + name + " for " + currentCost);
         Item item = this.getUpgradeItemInList();
         if (item != null) {
             item.setCoinIncreaseRate(item.getBASE_COIN_INCREASE() * 1.25);

@@ -68,6 +68,7 @@ public class AchievementAlertPane extends JOptionPane {
             }
         });
         achievementCheckTimer.setRepeats(true);
+        achievementCheckTimer.setCoalesce(false);
         achievementCheckTimer.start();
 
     }

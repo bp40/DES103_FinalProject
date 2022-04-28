@@ -46,7 +46,7 @@ public class UpgradeItemLabel extends JLabel {
         this.setText(item.name);
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 
-        costLabel = new JLabel("Cost : " + item.purchaseCost);
+        costLabel = new JLabel("Cost : " + item.currentCost);
         costLabel.setBorder(new EmptyBorder(30, 0, 0, 0));
         costLabel.setForeground(Color.yellow);
         this.add(costLabel, BorderLayout.SOUTH);
@@ -56,7 +56,7 @@ public class UpgradeItemLabel extends JLabel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        costLabel.setText("Cost : " + item.purchaseCost);
+        costLabel.setText("Cost : " + item.currentCost);
         this.setBackground(hoverBackgroundColor);
         this.setToolTipText("Current gain : " + (item.getCoinIncreaseRate() * item.getCurrentAmount()));
     }

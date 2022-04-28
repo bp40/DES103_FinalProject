@@ -75,7 +75,7 @@ public class Item extends Upgrade {
 
         Player.purchase(this);
         this.currentAmount += 1;
-        super.purchaseCost *= 1.15;
+        super.currentCost *= 1.15;
         Player.setIncomePerSecond(Player.getIncomePerSecond() + this.coinIncreaseRate);
     }
 

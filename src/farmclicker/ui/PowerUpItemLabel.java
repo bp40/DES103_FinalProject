@@ -31,7 +31,7 @@ public class PowerUpItemLabel extends JLabel {
         this.setBackground(Color.blue);
         this.setForeground(currentColor);
         this.setText(powerUp.name);
-        this.setToolTipText("Cost : " + powerUp.purchaseCost);
+        this.setToolTipText("Cost : " + powerUp.currentCost);
         this.setBorder(BorderFactory.createLineBorder(Color.black));
 
 
@@ -72,10 +72,10 @@ public class PowerUpItemLabel extends JLabel {
         super.paintComponent(g);
         if (powerUp.isOnCooldown) {
             currentColor = Color.orange;
-            this.setToolTipText("ON COOLDOWN Cost : " + powerUp.purchaseCost);
+            this.setToolTipText("ON COOLDOWN Cost : " + powerUp.currentCost);
         } else if (Player.canPurchase(powerUp)) {
             currentColor = new Color(0, 143, 17);
-            this.setToolTipText("Cost : " + powerUp.purchaseCost);
+            this.setToolTipText("Cost : " + powerUp.currentCost);
         } else {
             currentColor = Color.RED;
         }
